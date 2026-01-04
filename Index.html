@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ferretería San José</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --azul-oscuro: #002d5a;
+            --amarillo: #ffcc00;
+            --gris-claro: #f4f4f4;
+            --blanco: #ffffff;
+            --negro: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--gris-claro);
+            color: var(--negro);
+        }
+
+        /* --- NAVEGACIÓN --- */
+        header {
+            background-color: var(--azul-oscuro);
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 4px solid var(--amarillo);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: var(--amarillo);
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            color: var(--blanco);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--amarillo);
+        }
+
+        /* --- BANNER DINÁMICO (Simulado) --- */
+        .hero-banner {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1581244276891-83393a8ba3f5?auto=format&fit=crop&q=80&w=1200') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--blanco);
+            text-align: center;
+            animation: slide 15s infinite;
+        }
+
+        @keyframes slide {
+            0% { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1581244276891-83393a8ba3f5?w=1200'); }
+            50% { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1530124560676-586cad3ad784?w=1200'); }
+            100% { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1504148455328-c376907d081c?w=1200'); }
+        }
+
+        /* --- BUSCADOR INTELIGENTE --- */
+        .search-container {
+            background: var(--amarillo);
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .search-box {
+            width: 60%;
+            display: flex;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            outline: none;
+        }
+
+        .search-box button {
+            padding: 12px 25px;
+            background-color: var(--azul-oscuro);
+            color: white;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+
+        /* --- INVENTARIO / PRODUCTOS --- */
+        .inventory-section {
+            padding: 50px 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--azul-oscuro);
+            font-size: 2rem;
+        }
+
+        .grid-inventory {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background: var(--blanco);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-card img {
+            max-width: 100%;
+            height: 150px;
+            object-fit: contain;
+        }
+
+        .product-card h3 {
+            margin: 10px 0;
+            color: var(--azul-oscuro);
+        }
+
+        .price {
+            font-weight: bold;
+            color: #d32f2f;
+            font-size: 1.2rem;
+        }
+
+        /* --- CONTACTO --- */
+        .contact-section {
+            background-color: var(--azul-oscuro);
+            color: white;
+            padding: 50px 5%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            border: none;
+        }
+
+        .contact-form button {
+            background: var(--amarillo);
+            color: var(--azul-oscuro);
+            padding: 10px 20px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #111;
+            color: white;
+            text-align: center;
+            padding: 40px 5% 20px;
+        }
+
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .trust-badges i {
+            font-size: 2rem;
+            color: var(--amarillo);
+        }
+
+        .copyright {
+            border-top: 1px solid #444;
+            padding-top: 20px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">Ferretería San José</div>
+            <ul class="nav-links">
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Catálogos</a></li>
+                <li><a href="#">Servicios</a></li>
+                <li><a href="#">Embajadores</a></li>
+                <li><a href="#">Quiénes Somos</a></li>
+                <li><a href="#">Contáctanos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="hero-banner">
+        <h1>¡Nuevos Ingresos 2026!</h1>
+        <p>Las mejores herramientas para tus proyectos de construcción</p>
+    </div>
+
+    <div class="search-container">
+        <div class="search-box">
+            <input type="text" placeholder="Busca herramientas, materiales, marcas...">
+            <button><i class="fas fa-search"></i> Buscar</button>
+        </div>
+    </div>
+
+    <section class="inventory-section">
+        <h2 class="section-title">Nuestro Inventario</h2>
+        <div class="grid-inventory">
+            <div class="product-card">
+                <img src="https://via.placeholder.com/150?text=Taladro" alt="Taladro">
+                <h3>Taladro Percutor 18V</h3>
+                <p>Marca Industrial Pro</p>
+                <p class="price">$120.00</p>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/150?text=Martillo" alt="Martillo">
+                <h3>Martillo de Acero 16oz</h3>
+                <p>Ergonómico y resistente</p>
+                <p class="price">$15.50</p>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/150?text=Pintura" alt="Pintura">
+                <h3>Pintura Azul Exterior</h3>
+                <p>Cubeta 5 galones</p>
+                <p class="price">$85.00</p>
+            </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/150?text=Sierra" alt="Sierra">
+                <h3>Sierra Circular 7-1/4"</h3>
+                <p>Alta precisión</p>
+                <p class="price">$145.00</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <div style="flex: 1; min-width: 300px;">
+            <h2>Contáctanos</h2>
+            <p>Estamos listos para asesorarte en tu compra. Visítanos o envíanos un mensaje.</p>
+            <br>
+            <p><i class="fas fa-map-marker-alt"></i> Av. Principal, San José</p>
+            <p><i class="fas fa-phone"></i> +506 2026-0000</p>
+        </div>
+        <div class="contact-form">
+            <form action="#">
+                <input type="text" placeholder="Tu Nombre" required>
+                <input type="email" placeholder="Tu Correo" required>
+                <textarea rows="5" placeholder="¿En qué podemos ayudarte?"></textarea>
+                <button type="submit">ENVIAR CONSULTA</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="trust-badges">
+            <div class="badge"><i class="fas fa-shield-alt"></i><p>Garantía Total</p></div>
+            <div class="badge"><i class="fas fa-truck"></i><p>Envíos Rápidos</p></div>
+            <div class="badge"><i class="fas fa-tools"></i><p>Servicio Técnico</p></div>
+            <div class="badge"><i class="fas fa-handshake"></i><p>Marcas Líderes</p></div>
+        </div>
+        <p>Empresas que confían en nosotros: Constructora Alfa | Ingeniería Global | Proyectos S.A.</p>
+        <div class="copyright">
+            &copy; Ferretería San José 2026. Todos los derechos reservados.
+        </div>
+    </footer>
+
+</body>
+</html>
